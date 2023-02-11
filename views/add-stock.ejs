@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+       <div class="col-lg-5 mx-auto mt-3">
+       <div class="card shadow">
+        <div class="card-header bg-warning">
+            <h3 class="text-light"><i class="fas fa-pencil-square me-1" aria-hidden="true"></i>Add stock</h3> 
+            </div>
+            
+   <div class="card-body">
+    <form action="/add-product" method="post" id="add-form" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="name">Product Name</label>
+            <input type="text" name="Product_name" class="form-control form-control-lg" placeholder="Enter Product Name" required/>
+        </div>
+        <div class="mb-3">
+            <label for="Description">Description</label>
+            <textarea type="text" name="Description" class="form-control form-control-lg" placeholder="Product Description" id="floatingTextarea"></textarea>
+            
+        </div>
+        <div class="mb-3">
+            <label for="name">Cost</label>
+            <input type="number" name="Cost" class="form-control form-control-lg" placeholder="Enter Cost" required/>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Select Image</label>
+            <input type="file" name="image" class="form-control form-control-lg"  required/>
+        </div>
+        <div class="mb-3 d-grid">
+            <input type="submit" name="submit" value="Add Product" class="btn btn-success btn-lg"/>
+
+        </div>
+    </form>
+
+</div>
+        </div>
+
+       </div>
+
+       </div>
+    </div>
+</div>
