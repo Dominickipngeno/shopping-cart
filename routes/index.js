@@ -58,9 +58,9 @@ router.get('/add-to-cart/:id',(req,res,next)=>{
         return res.redirect('/')
 
       } 
+     var totalQty = 0;
       cart.add(products,products.id,totalQty) 
       req.session.cart = cart
-      let totalQty = 0;
       console.log(req.session.cart)
       res.redirect('/')
     })
@@ -106,13 +106,19 @@ router.post('/add-product', upload,(req, res)=>{
 
 router.get('/shopping-cart', function( req,res,next){
     if(!req.session.cart){
-return res.render('shopping-cart',{products: null})
+return res.render('shopping-cart',{tittle: 'Express-Online Shopping cart', products: null})
     }
 
     var cart = new Cart(req.session.cart)
-    res.render('shopping-cart', {tittle: 'Express-Online Shopping', products: cart.generateArray(),totalPrice: cart.totalPrice })
+    res.render('shopping-cart', {tittle: 'Express-Online Shopping cart', products: cart.generateArray(),totalPrice: cart.totalPrice })
 })
 
 
-
+router.get('/checkout', function(req,res,next){
+    if(!req.session.cart){
+        return res.redirect('/shopping-cart')
+    }
+    var cart= new Cart (req.session.cart)
+    res.render('checkout',{tittle: 'Express-Online Shopping Checkout Page',total:cart.totalPrice})
+})
 module.exports = router

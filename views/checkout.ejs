@@ -1,0 +1,47 @@
+
+    <div class="container text-align-center">
+      <main>
+        <div class="row g-5 center">
+          <div class="col-md-7 col-lg-8 center">
+            <h4 class="mb-3">Billing address</h4>
+            <h6 class="mb-3"> Your Total Bill is <%= total %> </h6>
+            <form class="needs-validation" novalidate>
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label for="firstName" class="form-label">First name</label>
+                  <input type="text" class="form-control" id="firstName" placeholder="" value="" required>  
+                </div>
+                <div class="col-sm-6">
+                  <label for="lastName" class="form-label">Last name</label>
+                  <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                </div>
+              
+              <h4 class="mb-3">Payment</h4>
+              <div class="my-3">
+                <div class="form-check">
+                  <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                  <label class="form-check-label" for="credit">Mpesa</label>
+                </div>
+              </div>
+    
+              <div class="row gy-3">
+                <div class="col-md-6">
+                  <label for="cc-name" class="form-label">Phone Number</label>
+                  <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                </div>
+                </div>
+
+              <button class="w-100 btn btn-warning " type="submit">Pay</button>
+            </form>
+          </div>
+        </div>
+      </main>
+    
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2023 ExpressTech</p>
+        
+      </footer>
+    </div>
+    
+    
+       

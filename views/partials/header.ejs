@@ -17,8 +17,12 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
                 <a class="nav-link active" href="/shopping-cart"><i class="fas fa-cart-shopping me-1" aria-hidden="true"></i> Shopping cart
-                
-                  <span class="badge text-bg-warning"><%= session.cart.totalQty %></span>
+                 
+
+                  <% if(session.cart) { %>
+                    <span class="badge text-bg-warning"><%= session.cart.totalQty %></span>
+                <% } %>
+                 
                 </a>
               
               </li>
