@@ -2,10 +2,25 @@
     <div class="container text-align-center">
       <main>
         <div class="row g-5 center">
+          <% if (message) { %>
+
+            <div class="alert alert-dismissible fade show alert-<%= message.type %> d-flex align-items-center" role="alert">
+              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+              <div>
+                <strong><%= message.message %></strong>
+              </div>
+            </div>
+           
+            <% } %>
           <div class="col-md-7 col-lg-8 center">
             <h4 class="mb-3">Billing address</h4>
-            <h6 class="mb-3"> Your Total Bill is <%= total %> </h6>
-            <form class="needs-validation" novalidate>
+            <h6 class="mb-3"> Your Total Bill is <%= total.toLocaleString(undefined, {
+              style: 'currency',
+              currency: 'Ksh',
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
+            }) %> </h6>
+            <form class="needs-validation" method="POST" action="/stk">
               <div class="row g-3">
                 <div class="col-sm-6">
                   <label for="firstName" class="form-label">First name</label>
@@ -17,19 +32,19 @@
                 </div>
               
               <h4 class="mb-3">Payment</h4>
-              <div class="my-3">
-                <div class="form-check">
-                  <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-                  <label class="form-check-label" for="credit">Mpesa</label>
-                </div>
-              </div>
-    
-              <div class="row gy-3">
+            
+              <div class="row gy-2">
                 <div class="col-md-6">
-                  <label for="cc-name" class="form-label">Phone Number</label>
-                  <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                  <label for="cc-name" name="phone" class="form-label">Phone Number</label>
+                  <input type="number" name="phone" class="form-control" id="cc-name" placeholder="" required>
                 </div>
                 </div>
+                <div class="row gy-2">
+                  <div class="col-md-6">
+                    <label for="cc-name" name="amount" class="form-label">Amount</label>
+                    <input type="number" class="form-control" value="<%= total %>" name="amount" id="amountInput" >
+                  </div>
+                  </div>
 
               <button class="w-100 btn btn-warning " type="submit">Pay</button>
             </form>
@@ -42,6 +57,15 @@
         
       </footer>
     </div>
+    <script>
     
-    
-       
+    document.addEventListener('DOMContentLoaded', function() {
+  const amountInput = document.getElementById('amountInput');
+  const initialValue = total; // Replace with your desired initial amount
+
+  amountInput.removeAttribute('value'); // Remove the value attribute
+  amountInput.value = initialValue; // Set the initial value programmatically
+});
+
+
+    </script>

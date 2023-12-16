@@ -10,9 +10,10 @@ module.exports= function Cart(oldCart){
         }
 
         storedItem.qty++
-        storedItem.Cost = storedItem.item.Cost * storedItem.qty
+        storedItem.Cost = parseInt(storedItem.item.Cost * storedItem.qty)
 this.totalQty++
 this.totalPrice += parseInt(storedItem.item.Cost)
+//this.totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
      }
 
 this.reduceByOne = function(id){

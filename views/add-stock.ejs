@@ -19,7 +19,7 @@
         </div>
         <div class="mb-3">
             <label for="name">Cost</label>
-            <input type="number" name="Cost" class="form-control form-control-lg" placeholder="Enter Cost" required/>
+            <input type="number" name="Cost"  id="price" class="form-control form-control-lg" placeholder="Enter Cost" required/>
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Select Image</label>
@@ -39,3 +39,22 @@
        </div>
     </div>
 </div>
+
+<script>
+    document.querySelector('#price').addEventListener('input', function (e) {
+  const parts = e.target.value.split('.');
+  const value = parts[0].replace(/\D/g, '');
+  const decimal = parts[1];
+
+  let newValue = new Intl.NumberFormat('en-EN').format(value);
+
+  // Prevent non-numeric decimal
+  if (!isNaN(decimal)) {
+    newValue = `${newValue}.${decimal}`;
+  }
+
+  // Prevent placing 0 when empty
+  e.target.value =
+    value === '' && newValue === '0' ? '' : newValue;
+})
+</script>

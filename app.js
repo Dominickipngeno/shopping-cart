@@ -11,9 +11,13 @@ var expressLayouts = require('express-ejs-layouts');
 const { init } = require('./models/User')
 const userRoutes = require('./routes/user')
 const app = express()
+
 require('./config/passport')
 
 const PORT = process.env.PORT || 5000
+//bodyparser
+app.use(bodyParser.json()) // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true }))
 
 mongoose.set('strictQuery', false);
 //db connectionss
@@ -28,9 +32,7 @@ app.use(express.urlencoded({ extended: true}))
 app.set('view engine', 'ejs')
 //express layouts
 app.use(expressLayouts);
-//bodyparser
-app.use(bodyParser.json()) // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true }))
+
 //statics folders
 app.use(express.static('public'))
  //image folders
@@ -49,8 +51,13 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(function(req,res,next){
+    res.locals.success_msg = req.flash('success_msg')
+    res.locals.error_msg = req.flash('error_msg')
+    res.locals.error = req.flash('error')
+    res.locals.message= req.session.message
     res.locals.login =req.isAuthenticated()
      res.locals.session = req.session;
+     
     next()
 })
 
